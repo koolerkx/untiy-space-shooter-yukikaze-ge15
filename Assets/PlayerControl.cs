@@ -28,29 +28,31 @@ public class PlayerControl : MonoBehaviour
 
         _currentLife = maxLife;
         UpdateBroken();
-        _menuManager.SetLife(_currentLife);
     }
 
     void Update()
     {
         Vector2 velocity = _rigidbody2D.linearVelocity;
 
-        if (velocity.sqrMagnitude > 0.01f)
+        if(_menuManager.gameState == GameState.InGame)
         {
-            float targetAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90f;
+            if (velocity.sqrMagnitude > 0.01f)
+            {
+                float targetAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90f;
 
-            float angle = Mathf.MoveTowardsAngle(
-                transform.eulerAngles.z,
-                targetAngle,
-                rotationSpeed * Time.deltaTime
-            );
+                float angle = Mathf.MoveTowardsAngle(
+                    transform.eulerAngles.z,
+                    targetAngle,
+                    rotationSpeed * Time.deltaTime
+                );
 
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
+                transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
-        {
-            SpawnBullet();
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
+            {
+                SpawnBullet();
+            }
         }
     }
 
@@ -93,7 +95,6 @@ public class PlayerControl : MonoBehaviour
         {
             _currentLife -= damage;
             UpdateBroken();
-            _menuManager.SetLife(_currentLife);
             _menuManager.SetHpBar(Math.Max(_currentLife, 0) / (float)maxLife);
         }
         else

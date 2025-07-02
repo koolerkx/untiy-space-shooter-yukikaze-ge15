@@ -22,7 +22,7 @@ public class GameOverPanel : MonoBehaviour
         _score = score;
         _killCount = killCount;
 
-        scoreText.text = $"得点：{_score}";
+        scoreText.text = $"スコア：{_score}";
         killCountText.text = $"撃墜数：{_killCount}";
         
         Debug.Log($"Display Score: {_score}");

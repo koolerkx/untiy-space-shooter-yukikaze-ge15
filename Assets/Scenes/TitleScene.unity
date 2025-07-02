@@ -1067,6 +1067,7 @@ MonoBehaviour:
   startButton: {fileID: 2064870888}
   quitButton: {fileID: 1589597472}
   gameScene: GameScene
+  transitionTime: 0.5
 --- !u!1 &2111314234
 GameObject:
   m_ObjectHideFlags: 0

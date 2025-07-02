@@ -299,7 +299,7 @@ RectTransform:
   m_GameObject: {fileID: 41809856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6365, y: 1.6365, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 107446950}
@@ -307,7 +307,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 40}
+  m_SizeDelta: {x: 261.84, y: 65.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &41809858
 MonoBehaviour:
@@ -342,7 +342,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 1000
+  m_Text: 1234567880
 --- !u!222 &41809859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -378,7 +378,7 @@ RectTransform:
   m_GameObject: {fileID: 107446949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6365, y: 1.6365, z: 1.6365}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 41809857}
@@ -388,7 +388,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 422}
-  m_SizeDelta: {x: 197, y: 75}
+  m_SizeDelta: {x: 322.3905, y: 122.7375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107446951
 MonoBehaviour:
@@ -458,12 +458,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  scorePanel: {fileID: 107446949}
   scoreText: {fileID: 41809858}
   lifeText: {fileID: 0}
+  hpPanel: {fileID: 198628024}
   hpBar: {fileID: 31791777}
   hpBarTransitionTime: 0.5
+  transitionTime: 0.5
   startMessage: {fileID: 1564668700}
   gameOverPanel: {fileID: 1924306037}
+  gameState: 0
   killCount: 0
   menuSceneName: TitleScene
 --- !u!4 &111448704
@@ -508,15 +512,15 @@ RectTransform:
   m_GameObject: {fileID: 135183181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6365, y: 1.6365, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 107446950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 51.3}
+  m_SizeDelta: {x: 261.84, y: 49.095}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &135183183
 MonoBehaviour:
@@ -551,7 +555,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5F97\u70B9"
+  m_Text: "\u30B9\u30B3\u30A2"
 --- !u!222 &135183184
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -722,6 +726,7 @@ MonoBehaviour:
   - {fileID: 1021559845436731910, guid: b14b1bf0d26fe2045af4703299735cc7, type: 3}
   - {fileID: 1457585895554050446, guid: 854f8c4b983bbe449a0cbfcb616df175, type: 3}
   - {fileID: 6097333033524989309, guid: ca5129af9d9934548bbb07bd2771a3ed, type: 3}
+  menuManager: {fileID: 111448703}
   spawnInterval: 1.5
   spawnRadius: 10
 --- !u!1 &474935622
