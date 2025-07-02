@@ -1,12 +1,20 @@
+using System;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] float rotationSpeed = 180f;
+    
+    [Header("Bullet")]
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpawnOffset = 0.5f; 
-    [SerializeField] GameObject[] brokenStateChildObject;
+    
+    [Header("Life and Broken State")]
     [SerializeField] public int maxLife = 4;
+    [SerializeField] GameObject[] brokenStateChildObject;
+    
+    [Header("Movement")]
+    [SerializeField] float rotationSpeed = 180f;
+    [SerializeField] public float speed = 4;
 
     private MenuManager _menuManager;
     private Rigidbody2D _rigidbody2D;
@@ -44,6 +52,12 @@ public class PlayerControl : MonoBehaviour
         {
             SpawnBullet();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        _rigidbody2D.AddForce(input * speed);
     }
 
     void SpawnBullet()
