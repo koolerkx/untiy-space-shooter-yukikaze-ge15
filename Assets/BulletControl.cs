@@ -4,7 +4,7 @@ using UnityEngine;
 public class BulletControl : MonoBehaviour
 {
     public int maxDestroy = 1;
-    private int _destroyCount = 0;
+    private int _destroyCount;
 
     private MenuManager _menuManager;
     private Rigidbody2D _rb;
@@ -14,6 +14,8 @@ public class BulletControl : MonoBehaviour
 
     void Start()
     {
+        _destroyCount = 0;
+        
         _menuManager = FindAnyObjectByType<MenuManager>();
         _rb = GetComponent<Rigidbody2D>();
         if (_rb)

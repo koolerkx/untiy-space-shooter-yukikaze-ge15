@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
 
         _currentLife = maxLife;
         UpdateBroken();
-        _menuManager.UpdateLife(_currentLife);
+        _menuManager.SetLife(_currentLife);
     }
 
     void Update()
@@ -50,17 +50,17 @@ public class PlayerControl : MonoBehaviour
     {
         if (!bulletPrefab) return;
         Vector3 spawnPos = transform.position + transform.up.normalized * bulletSpawnOffset;
-        GameObject bullet = Instantiate(bulletPrefab, spawnPos, transform.rotation);
+        Instantiate(bulletPrefab, spawnPos, transform.rotation);
     }
 
-    public void LoseLife()
+    public void LoseLife(int damage = 1)
     {
         if (_currentLife > 0)
         {
             _currentLife--;
             Debug.Log($"Current Life: {_currentLife}");
             UpdateBroken();
-            _menuManager.UpdateLife(_currentLife);
+            _menuManager.SetLife(_currentLife);
         }
         else
         {
@@ -73,16 +73,6 @@ public class PlayerControl : MonoBehaviour
         for (int i = 0; i < brokenStateChildObject.Length; i++)
         {
             brokenStateChildObject[i].SetActive(i < (maxLife - _currentLife));
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Enemy"))
-        {
-            LoseLife();
-
-            Destroy(collision.gameObject);
         }
     }
 }

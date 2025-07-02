@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void UpdateLife(int life)
+    public void SetLife(int life)
     {
         if (lifeText)
         {
@@ -28,9 +28,14 @@ public class MenuManager : MonoBehaviour
     public void AddScore(int value)
     {
         score += value;
+        SetScore(score);
+    }
+    
+    public void SetScore(int value)
+    {
         if (scoreText)
         {
-            scoreText.text = $"Score: {score}";
+            scoreText.text = $"Score: {value}";
         }
     }
 }
