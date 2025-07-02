@@ -436,6 +436,7 @@ MonoBehaviour:
   brokenStateChildObject: []
   rotationSpeed: 360
   speed: 5
+  throttleEffectSprite: {fileID: 7848015522517538231}
 --- !u!1 &7848015522517538231
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public GameObject hpBar;
     public float hpBarTransitionTime = 0.5f;
 
+    public StartMessage StartMessage;
+
     private void Start()
     {
         score = 0;
@@ -20,6 +22,8 @@ public class MenuManager : MonoBehaviour
             // scoreText.text = $"Score: {score}";
             scoreText.text = $"{score}";
         }
+
+        StartMessage.Display();
     }
 
     public void SetLife(int life)
@@ -70,4 +74,5 @@ public class MenuManager : MonoBehaviour
             scoreText.text = $"{score}";
         }
     }
+
 }
