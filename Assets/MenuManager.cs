@@ -17,7 +17,8 @@ public class MenuManager : MonoBehaviour
         score = 0;
         if (scoreText)
         {
-            scoreText.text = $"Score: {score}";
+            // scoreText.text = $"Score: {score}";
+            scoreText.text = $"{score}";
         }
     }
 
@@ -65,7 +66,8 @@ public class MenuManager : MonoBehaviour
     {
         if (scoreText)
         {
-            scoreText.text = $"Score: {value}";
+            // scoreText.text = $"Score: {value}";
+            scoreText.text = $"{score}";
         }
     }
 }
