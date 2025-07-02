@@ -48,7 +48,7 @@ public class PlayerControl : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
         {
             SpawnBullet();
         }

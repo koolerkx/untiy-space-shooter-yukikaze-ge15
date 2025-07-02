@@ -5,7 +5,7 @@ public class Enemy2Spawn : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     private GameObject _player;
-
+    
     public float spawnInterval = 1f;
     public float spawnRadius = 20f;
 
@@ -18,8 +18,8 @@ public class Enemy2Spawn : MonoBehaviour
     {
         int randomIndex = UnityEngine.Random.Range(0, enemyPrefabs.Length);
 
-        Vector3 center = _player.transform.position;
-        // Vector3 center = new Vector3(0, 0, 0);
+        // Vector3 center = _player.transform.position;
+        Vector3 center = new Vector3(0, 0, 0);
 
         if (Time.time % spawnInterval < Time.fixedDeltaTime)
         {
