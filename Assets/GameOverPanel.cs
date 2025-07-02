@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameOverPanel : MonoBehaviour
 {
-    private int _killCount = 0;
-    private int _score = 0;
+    private int _killCount;
+    private int _score;
 
     public Text killCountText;
     public Text scoreText;
@@ -13,7 +12,10 @@ public class GameOverPanel : MonoBehaviour
     public Button restartButton;
     public Button menuButton;
 
-    private int _buttonSelectedIndex = 0;
+    private int _buttonSelectedIndex;
+
+    private float _lastHorizontalInputTime;
+    private readonly float _horizontalInputCooldown = 0.3f;
 
     public void Display(int score, int killCount)
     {
@@ -57,7 +59,7 @@ public class GameOverPanel : MonoBehaviour
         obj.transform.localScale = scale;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) ||
             Input.GetButtonDown("Fire1") ||
@@ -73,18 +75,35 @@ public class GameOverPanel : MonoBehaviour
                 menuButton.onClick.Invoke();
             }
         }
-        
-        if (Input.GetKeyDown(KeyCode.Tab))
+
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        bool left = Input.GetKeyDown(KeyCode.LeftArrow);
+        bool right = Input.GetKeyDown(KeyCode.RightArrow);
+        float now = Time.unscaledTime;
+        bool canInput = (now - _lastHorizontalInputTime) > _horizontalInputCooldown;
+
+        if (Input.GetKeyDown(KeyCode.Tab) ||
+            (canInput && (right || horizontal > 0.5f)) ||
+            (canInput && (left || horizontal < -0.5f)))
         {
-            _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;
-            if (_buttonSelectedIndex == 0)
+            if (right || horizontal > 0.5f || Input.GetKeyDown(KeyCode.Tab))
             {
-                restartButton.Select();
+                _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;
             }
-            else
+            else if (left || horizontal < -0.5f)
             {
-                menuButton.Select();
+                _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;
             }
+            _lastHorizontalInputTime = now;
+        }
+        
+        if (_buttonSelectedIndex == 0)
+        {
+            restartButton.Select();
+        }
+        else
+        {
+            menuButton.Select();
         }
     }
 }

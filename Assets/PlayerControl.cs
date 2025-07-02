@@ -58,10 +58,7 @@ public class PlayerControl : MonoBehaviour
     {
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         _rigidbody2D.AddForce(input * speed);
-
-        // Debug.Log(_rigidbody2D.linearVelocity.magnitude);
-        // Debug.Log($"input {input.magnitude}");
-
+        
         Vector3 effectScale = throttleEffectSprite.transform.localScale;
         effectScale.y = Mathf.Lerp(0f, 0.75f, input.magnitude);
         throttleEffectSprite.transform.localScale = effectScale;
@@ -101,7 +98,8 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            // todo
+            _menuManager.EndGame();
+            Destroy(gameObject);
         }
     }
 

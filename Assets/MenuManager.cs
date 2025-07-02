@@ -1,7 +1,11 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+
+enum GameState
+{
+    InGame,
+    GameEnd
+}
 
 public class MenuManager : MonoBehaviour
 {
@@ -12,10 +16,14 @@ public class MenuManager : MonoBehaviour
     public GameObject hpBar;
     public float hpBarTransitionTime = 0.5f;
 
-    public StartMessage StartMessage;
+    public StartMessage startMessage;
     public GameOverPanel gameOverPanel;
     
-    public int killCount = 0;
+    GameState _gameState = GameState.InGame;
+    
+    public int killCount;
+    
+    public string menuSceneName = "Menu";
 
     private void Start()
     {
@@ -26,7 +34,7 @@ public class MenuManager : MonoBehaviour
             scoreText.text = $"{score}";
         }
 
-        StartMessage.Display();
+        startMessage.Display();
     }
 
     public void SetLife(int life)
@@ -86,16 +94,18 @@ public class MenuManager : MonoBehaviour
     
     public void EndGame()
     {
+        if(_gameState == GameState.GameEnd) return;
+        _gameState = GameState.GameEnd;
         gameOverPanel.Display(score, killCount);
     }
 
     public void RestartGame()
     {
-        // todo
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
     
     public void BackToMenu()
     {
-        // todo
+        UnityEngine.SceneManagement.SceneManager.LoadScene(menuSceneName);
     }
 }

@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Enemy2 : MonoBehaviour
 {
@@ -19,11 +17,11 @@ public class Enemy2 : MonoBehaviour
     [SerializeField, Range(1f, 20f)] private float shootRate = 3f;
     [SerializeField, Range(0.1f, 2f)] private float bulletSpawnOffset = 1f;
 
-    private float _bulletTimer = 0f;
-    private int _bulletsFired = 0;
-    private bool _isFiring = false;
+    private float _bulletTimer;
+    private int _bulletsFired;
+    private bool _isFiring;
 
-    private float _shootRateTimer = 0f;
+    private float _shootRateTimer;
 
     private void Start()
     {

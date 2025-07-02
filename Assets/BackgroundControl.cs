@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BackgroundControl : MonoBehaviour
 {
+    private static readonly int MainTex = Shader.PropertyToID("_MainTex");
     public float scrollSpeed = 0.5f;
     private Material _mat;
     private Vector2 _offset = Vector2.zero;
@@ -22,6 +23,6 @@ public class BackgroundControl : MonoBehaviour
             _offset += playerVelocity * (-1f * scrollSpeed * Time.deltaTime);
         }
 
-        _mat.SetTextureOffset("_MainTex", _offset);
+        _mat.SetTextureOffset(MainTex, _offset);
     }
 }
