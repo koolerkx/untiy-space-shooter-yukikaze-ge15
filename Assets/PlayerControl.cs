@@ -75,6 +75,7 @@ public class PlayerControl : MonoBehaviour
             Debug.Log($"Current Life: {_currentLife}");
             UpdateBroken();
             _menuManager.SetLife(_currentLife);
+            _menuManager.SetHpBar(_currentLife / (float)maxLife);
         }
         else
         {

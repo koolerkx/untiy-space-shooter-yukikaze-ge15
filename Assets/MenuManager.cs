@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
@@ -7,6 +8,9 @@ public class MenuManager : MonoBehaviour
     public int score;
     public Text scoreText;
     public Text lifeText;
+    
+    public GameObject hpBar;
+    public float hpBarTransitionTime = 0.5f;
 
     private void Start()
     {
@@ -23,6 +27,32 @@ public class MenuManager : MonoBehaviour
         {
             lifeText.text = $"Life: {life}";
         }
+    }
+
+    public void SetHpBar(float percent)
+    {
+        if (hpBar)
+        {
+            Vector3 scale = hpBar.transform.localScale;
+            StopAllCoroutines();
+            StartCoroutine(SmoothScaleX(hpBar, scale.x, percent, hpBarTransitionTime));
+        }
+    }
+
+    private System.Collections.IEnumerator SmoothScaleX(GameObject bar, float from, float to, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 scale = bar.transform.localScale;
+        while (elapsed < duration)
+        {
+            float x = Mathf.Lerp(from, to, elapsed / duration);
+            scale.x = x;
+            bar.transform.localScale = scale;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        scale.x = to;
+        bar.transform.localScale = scale;
     }
 
     public void AddScore(int value)
