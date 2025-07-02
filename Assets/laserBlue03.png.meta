@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fd9b81ea1a500e74496a5eba3324733d
+guid: 18345b82a83f7764b8b35d9a0a6ecea1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3008064678991382309
-    second: playerShip1_damage1_0
+      213: 1230525322960871258
+    second: laserBlue03_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: playerShip1_damage1_0
+      name: laserBlue03_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 99
-        height: 76
+        width: 9
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5274eac53eaceb920800000000000000
-      internalID: 3008064678991382309
+      spriteID: a5f943af244b31110800000000000000
+      internalID: 1230525322960871258
       vertices: []
       indices: 
       edges: []
