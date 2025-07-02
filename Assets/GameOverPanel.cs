@@ -23,7 +23,10 @@ public class GameOverPanel : MonoBehaviour
         _killCount = killCount;
 
         scoreText.text = $"得点：{_score}";
-        scoreText.text = $"撃墜数：{_killCount}";
+        killCountText.text = $"撃墜数：{_killCount}";
+        
+        Debug.Log($"Display Score: {_score}");
+        Debug.Log($"Display KillCount: {_killCount}");
 
         restartButton.Select();
         _buttonSelectedIndex = 0;

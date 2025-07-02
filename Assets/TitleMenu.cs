@@ -17,6 +17,8 @@ public class TitleMenu : MonoBehaviour
     private float _lastHorizontalInputTime;
     private readonly float _horizontalInputCooldown = 0.3f;
 
+    public float transitionTime = 0.5f;
+
     private void Start()
     {
         StartSequence();
@@ -25,14 +27,14 @@ public class TitleMenu : MonoBehaviour
     private void StartSequence()
     {
         StopAllCoroutines();
-        StartCoroutine(SmoothScaleY(titleLogo, 0f, 1f, 0.5f));
-        StartCoroutine(SmoothScaleY(menuPanel, 0f, 1f, 0.5f));
+        StartCoroutine(SmoothScaleY(titleLogo, 0f, 1f, transitionTime));
+        StartCoroutine(SmoothScaleY(menuPanel, 0f, 1f, transitionTime));
     }
 
     public void StartGameSequence()
     {
-        StartCoroutine(SmoothScaleY(titleLogo, 1f, 0f, 0.5f));
-        StartCoroutine(SmoothScaleY(menuPanel, 1f, 0f, 0.5f));
+        StartCoroutine(SmoothScaleY(titleLogo, 1f, 0f, transitionTime));
+        StartCoroutine(SmoothScaleY(menuPanel, 1f, 0f, transitionTime));
         
         StartCoroutine(WaitAndLoadScene());
     }
@@ -62,7 +64,7 @@ public class TitleMenu : MonoBehaviour
     
     System.Collections.IEnumerator WaitAndLoadScene()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(transitionTime + 0.1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(gameScene);
     }
     

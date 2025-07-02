@@ -47,6 +47,7 @@ public class BulletControl : MonoBehaviour
             }
 
             _destroyCount++;
+            _menuManager.AddKill();
             if (_destroyCount >= maxDestroy)
             {
                 Destroy(gameObject);
