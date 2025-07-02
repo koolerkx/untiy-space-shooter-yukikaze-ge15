@@ -212,7 +212,7 @@ MonoBehaviour:
   moveSpeed: 0.4
   score: 100
   damage: 1
-  bulletPerShoot: 3
-  bulletPerShootRate: 0.5
-  shootRate: 3
+  bulletPerShoot: 1
+  bulletPerShootRate: 0.1
+  shootRate: 5
   bulletSpawnOffset: 0.3

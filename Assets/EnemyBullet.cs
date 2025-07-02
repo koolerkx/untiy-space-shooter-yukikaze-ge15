@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
@@ -24,6 +23,14 @@ public class EnemyBullet : MonoBehaviour
         if (player)
         {
             player.LoseLife(damage);
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall"))
+        {
             Destroy(gameObject);
         }
     }
