@@ -3,38 +3,49 @@ using UnityEngine;
 
 public class BulletControl : MonoBehaviour
 {
-    public float speed = 10f;
     public int maxDestroy = 1;
     private int _destroyCount = 0;
-    private MenuManager _menuManager;
-    public int scorePerEnemy = 100;
 
-    [Obsolete("Obsolete")]
+    private MenuManager _menuManager;
+    private Rigidbody2D _rb;
+
+    public float initialSpeed = 10f;
+    public float acceleration = 10f;
+
     void Start()
     {
-        _menuManager = FindObjectOfType<MenuManager>();
+        _menuManager = FindAnyObjectByType<MenuManager>();
+        _rb = GetComponent<Rigidbody2D>();
+        if (_rb)
+        {
+            _rb.AddForce(transform.up * initialSpeed, ForceMode2D.Impulse);
+        }
     }
 
     void Update()
     {
-        transform.Translate(Vector3.up * (speed * Time.deltaTime));
+        if (_rb)
+        {
+            _rb.AddForce(transform.up * acceleration);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            int enemyScore = scorePerEnemy;
             var enemyComponent = other.GetComponent<Enemy2>();
             if (enemyComponent != null)
             {
-                enemyScore = enemyComponent.score;
+                int enemyScore = enemyComponent.score;
+                Destroy(other.gameObject);
+                if (_menuManager != null)
+                {
+                    _menuManager.AddScore(enemyScore);
+                }
             }
-            Destroy(other.gameObject);
-            if (_menuManager != null)
-            {
-                _menuManager.AddScore(enemyScore);
-            }
+
+
             _destroyCount++;
             if (_destroyCount >= maxDestroy)
             {

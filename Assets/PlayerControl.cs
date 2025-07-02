@@ -6,15 +6,21 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpawnOffset = 0.5f; 
     [SerializeField] GameObject[] brokenStateChildObject;
-    [SerializeField] int maxLife = 4;
+    [SerializeField] public int maxLife = 4;
+
+    private MenuManager _menuManager;
     private Rigidbody2D _rigidbody2D;
+    
     int _currentLife;
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _menuManager = FindAnyObjectByType<MenuManager>();
+
         _currentLife = maxLife;
-        UpdateLifeIcons();
+        UpdateBroken();
+        _menuManager.UpdateLife(_currentLife);
     }
 
     void Update()
@@ -53,25 +59,30 @@ public class PlayerControl : MonoBehaviour
         {
             _currentLife--;
             Debug.Log($"Current Life: {_currentLife}");
-            UpdateLifeIcons();
+            UpdateBroken();
+            _menuManager.UpdateLife(_currentLife);
+        }
+        else
+        {
+            // todo
         }
     }
 
-    void UpdateLifeIcons()
+    void UpdateBroken()
     {
         for (int i = 0; i < brokenStateChildObject.Length; i++)
         {
-            Debug.Log("brokenStateChildObject[i]");
-            // TODO
             brokenStateChildObject[i].SetActive(i < (maxLife - _currentLife));
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Enemy"))
         {
             LoseLife();
+
+            Destroy(collision.gameObject);
         }
     }
 }
