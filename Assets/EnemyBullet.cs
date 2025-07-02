@@ -25,11 +25,15 @@ public class EnemyBullet : MonoBehaviour
             player.LoseLife(damage);
             Destroy(gameObject);
         }
+        if (other.CompareTag("PlayerBullet"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.CompareTag("VisibleArea"))
         {
             Destroy(gameObject);
         }

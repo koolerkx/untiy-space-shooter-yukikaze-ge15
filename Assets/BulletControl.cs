@@ -55,4 +55,12 @@ public class BulletControl : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

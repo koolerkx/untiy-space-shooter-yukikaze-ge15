@@ -4,16 +4,21 @@ using UnityEngine;
 public class Enemy2Spawn : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
-    public GameObject player;
+    private GameObject _player;
 
     public float spawnInterval = 1f;
     public float spawnRadius = 20f;
+
+    private void Start()
+    {
+        _player = GameObject.Find("Player");
+    }
 
     private void FixedUpdate()
     {
         int randomIndex = UnityEngine.Random.Range(0, enemyPrefabs.Length);
 
-        Vector3 center = player.transform.position;
+        Vector3 center = _player.transform.position;
         // Vector3 center = new Vector3(0, 0, 0);
 
         if (Time.time % spawnInterval < Time.fixedDeltaTime)
