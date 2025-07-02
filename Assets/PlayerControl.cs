@@ -3,22 +3,22 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    
-    [Header("Bullet")]
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] float bulletSpawnOffset = 0.5f; 
-    
-    [Header("Life and Broken State")]
-    [SerializeField] public int maxLife = 4;
+    [Header("Bullet")] [SerializeField] GameObject bulletPrefab;
+    [SerializeField] float bulletSpawnOffset = 0.5f;
+
+    [Header("Life and Broken State")] [SerializeField]
+    public int maxLife = 4;
+
     [SerializeField] GameObject[] brokenStateChildObject;
-    
-    [Header("Movement")]
-    [SerializeField] float rotationSpeed = 180f;
+
+    [Header("Movement")] [SerializeField] float rotationSpeed = 180f;
     [SerializeField] public float speed = 4;
 
     private MenuManager _menuManager;
     private Rigidbody2D _rigidbody2D;
-    
+
+    public GameObject throttleEffectSprite;
+
     int _currentLife;
 
     private void Start()
@@ -58,6 +58,29 @@ public class PlayerControl : MonoBehaviour
     {
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         _rigidbody2D.AddForce(input * speed);
+
+        // Debug.Log(_rigidbody2D.linearVelocity.magnitude);
+        // Debug.Log($"input {input.magnitude}");
+
+        Vector3 effectScale = throttleEffectSprite.transform.localScale;
+        effectScale.y = Mathf.Lerp(0f, 0.75f, input.magnitude);
+        throttleEffectSprite.transform.localScale = effectScale;
+        
+        if (input.sqrMagnitude > 0.01f)
+        {
+            float inputAngle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg - 90f;
+            float playerAngle = transform.eulerAngles.z;
+            float relativeAngle = Mathf.DeltaAngle(playerAngle, inputAngle);
+            
+            if (Mathf.Abs(relativeAngle) < 5f) {
+                throttleEffectSprite.transform.rotation = Quaternion.Euler(0, 0, playerAngle);
+            } else {
+                float clampedAngle = Mathf.Clamp(relativeAngle * -1, -25f, 25f);
+                float effectAngle = playerAngle + clampedAngle;
+                
+                throttleEffectSprite.transform.rotation = Quaternion.Euler(0, 0, effectAngle);
+            }
+        }
     }
 
     void SpawnBullet()

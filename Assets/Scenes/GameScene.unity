@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 41809859}
   - component: {fileID: 41809858}
   m_Layer: 5
-  m_Name: DisplayScotreText
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  scoreText: {fileID: 1630479752}
+  scoreText: {fileID: 41809858}
   lifeText: {fileID: 1336154059}
   hpBar: {fileID: 31791777}
   hpBarTransitionTime: 0.5
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 135183184}
   - component: {fileID: 135183183}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: DisplayScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1918,25 +1918,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 380060530705159171, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
-      propertyPath: brokenStateChildObject.Array.size
+    - target: {fileID: 576831132105998423, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 576831132105998423, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 576831132105998423, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 576831132105998423, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.7395556
-      objectReference: {fileID: 0}
-    - target: {fileID: 576831132105998423, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.7434423
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 576831132105998423, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1969,14 +1957,6 @@ PrefabInstance:
     - target: {fileID: 576831132105998423, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1792811976755184584, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -5748879822672990182, guid: db16ec893e025234c91a3575f902632c, type: 3}
-    - target: {fileID: 3453187005544593471, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
-      propertyPath: m_Radius
-      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 5099022380362537451, guid: 4bce15918fbaed544a23d0d3f1872b72, type: 3}
       propertyPath: m_Name
