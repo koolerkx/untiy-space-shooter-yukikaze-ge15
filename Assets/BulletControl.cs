@@ -47,7 +47,22 @@ public class BulletControl : MonoBehaviour
                 }
             }
 
+            _destroyCount++;
+            if (_destroyCount >= maxDestroy)
+            {
+                Destroy(gameObject);
+            }
+        }
 
+        if (other.CompareTag("EnemyBullet"))
+        {
+            var enemyBullet = other.GetComponent<EnemyBullet>();
+
+            if (_menuManager != null)
+            {
+                _menuManager.AddScore(enemyBullet.destroyScore);
+            }
+            
             _destroyCount++;
             if (_destroyCount >= maxDestroy)
             {

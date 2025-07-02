@@ -5,6 +5,8 @@ public class EnemyBullet : MonoBehaviour
     public float initialSpeed = 10f;
     public int damage = 1;
 
+    public int destroyScore = 100;
+
     private Rigidbody2D _rb;
 
     void Start()

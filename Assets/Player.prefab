@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 0.99, y: 0.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3678097942172899273
@@ -171,7 +171,7 @@ SpriteRenderer:
   m_Size: {x: 0.99, y: 0.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5078079536890925788
@@ -258,7 +258,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 0.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5099022380362537451
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1964640097212780762, guid: 63352a8a166106348a8a4eba38413af5, type: 3}
   bulletSpawnOffset: 0.5
-  maxLife: 4
+  maxLife: 100
   brokenStateChildObject: []
   rotationSpeed: 360
   speed: 5

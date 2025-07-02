@@ -65,6 +65,10 @@ PrefabInstance:
       value: EnemyBulletStar V4 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5355217202292266041, guid: 6b140436389385547b945689ac74fd69, type: 3}
+      propertyPath: destroyScore
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355217202292266041, guid: 6b140436389385547b945689ac74fd69, type: 3}
       propertyPath: initialSpeed
       value: 1
       objectReference: {fileID: 0}

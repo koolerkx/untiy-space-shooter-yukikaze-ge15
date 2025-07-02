@@ -94,11 +94,10 @@ public class PlayerControl : MonoBehaviour
     {
         if (_currentLife > 0)
         {
-            _currentLife--;
-            Debug.Log($"Current Life: {_currentLife}");
+            _currentLife -= damage;
             UpdateBroken();
             _menuManager.SetLife(_currentLife);
-            _menuManager.SetHpBar(_currentLife / (float)maxLife);
+            _menuManager.SetHpBar(Math.Max(_currentLife, 0) / (float)maxLife);
         }
         else
         {

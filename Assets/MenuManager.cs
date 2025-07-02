@@ -13,6 +13,9 @@ public class MenuManager : MonoBehaviour
     public float hpBarTransitionTime = 0.5f;
 
     public StartMessage StartMessage;
+    public GameOverPanel gameOverPanel;
+    
+    public int killCount = 0;
 
     private void Start()
     {
@@ -74,5 +77,25 @@ public class MenuManager : MonoBehaviour
             scoreText.text = $"{score}";
         }
     }
+    
+    public void AddKill(int value = 1)
+    {
+        killCount += value;
+    }
+    
+    
+    public void EndGame()
+    {
+        gameOverPanel.Display(score, killCount);
+    }
 
+    public void RestartGame()
+    {
+        // todo
+    }
+    
+    public void BackToMenu()
+    {
+        // todo
+    }
 }
