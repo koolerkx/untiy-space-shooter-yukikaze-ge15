@@ -18,10 +18,14 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
 
     public GameObject throttleEffectSprite;
-    
+
     public AudioManager audioManager;
 
     int _currentLife;
+    
+    [Header("Item")] 
+    public int healAmount = 25;
+    public float duration = 10.0f;
 
     private void Start()
     {
@@ -105,6 +109,31 @@ public class PlayerControl : MonoBehaviour
         {
             _menuManager.EndGame();
             Destroy(gameObject);
+        }
+    }
+
+    public void HealLife(int amount)
+    {
+        _currentLife = Math.Min(_currentLife + amount, maxLife);
+
+        _menuManager.SetHpBar(Math.Min(_currentLife, maxLife) / (float)maxLife);
+    }
+
+    public void ApplyItem(ItemType type)
+    {
+        switch (type)
+        {
+            case ItemType.Heal:
+                HealLife(healAmount);
+                break;
+            case ItemType.Repeat:
+                break;
+            case ItemType.Scale:
+                break;
+            case ItemType.Through:
+                break;
+            case ItemType.None:
+                break;
         }
     }
 }
