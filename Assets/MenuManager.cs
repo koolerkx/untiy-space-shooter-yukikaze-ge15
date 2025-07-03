@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public enum GameState
@@ -32,6 +33,9 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        InputSystem.DisableDevice(Mouse.current); 
+        
         score = 0;
         if (scoreText)
         {

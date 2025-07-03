@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TitleMenu : MonoBehaviour
@@ -26,6 +26,9 @@ public class TitleMenu : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        InputSystem.DisableDevice(Mouse.current); 
+        
         StartSequence();
     }
     
