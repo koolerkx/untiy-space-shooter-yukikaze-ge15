@@ -16,6 +16,9 @@ public class Item : MonoBehaviour
 
     [SerializeField] public ItemType type = ItemType.None;
 
+    public float speedUpper = 1.0f; 
+    public float speedLower = 3.0f;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -31,6 +34,15 @@ public class Item : MonoBehaviour
                     Instantiate(messageBox, panel.transform, false);
                 }
             }
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("VisibleArea"))
+        {
+            Destroy(gameObject);
         }
     }
 }
