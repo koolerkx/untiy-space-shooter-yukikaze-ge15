@@ -27,14 +27,13 @@ public class PlayerControl : MonoBehaviour
         _menuManager = FindAnyObjectByType<MenuManager>();
 
         _currentLife = maxLife;
-        UpdateBroken();
     }
 
     void Update()
     {
         Vector2 velocity = _rigidbody2D.linearVelocity;
 
-        if(_menuManager.gameState == GameState.InGame)
+        if (_menuManager.gameState == GameState.InGame)
         {
             if (velocity.sqrMagnitude > 0.01f)
             {
@@ -60,23 +59,26 @@ public class PlayerControl : MonoBehaviour
     {
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         _rigidbody2D.AddForce(input * speed);
-        
+
         Vector3 effectScale = throttleEffectSprite.transform.localScale;
         effectScale.y = Mathf.Lerp(0f, 0.75f, input.magnitude);
         throttleEffectSprite.transform.localScale = effectScale;
-        
+
         if (input.sqrMagnitude > 0.01f)
         {
             float inputAngle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg - 90f;
             float playerAngle = transform.eulerAngles.z;
             float relativeAngle = Mathf.DeltaAngle(playerAngle, inputAngle);
-            
-            if (Mathf.Abs(relativeAngle) < 5f) {
+
+            if (Mathf.Abs(relativeAngle) < 5f)
+            {
                 throttleEffectSprite.transform.rotation = Quaternion.Euler(0, 0, playerAngle);
-            } else {
+            }
+            else
+            {
                 float clampedAngle = Mathf.Clamp(relativeAngle * -1, -25f, 25f);
                 float effectAngle = playerAngle + clampedAngle;
-                
+
                 throttleEffectSprite.transform.rotation = Quaternion.Euler(0, 0, effectAngle);
             }
         }
@@ -91,24 +93,15 @@ public class PlayerControl : MonoBehaviour
 
     public void LoseLife(int damage = 1)
     {
+        _currentLife -= damage;
         if (_currentLife > 0)
         {
-            _currentLife -= damage;
-            UpdateBroken();
             _menuManager.SetHpBar(Math.Max(_currentLife, 0) / (float)maxLife);
         }
         else
         {
             _menuManager.EndGame();
             Destroy(gameObject);
-        }
-    }
-
-    void UpdateBroken()
-    {
-        for (int i = 0; i < brokenStateChildObject.Length; i++)
-        {
-            brokenStateChildObject[i].SetActive(i < (maxLife - _currentLife));
         }
     }
 }

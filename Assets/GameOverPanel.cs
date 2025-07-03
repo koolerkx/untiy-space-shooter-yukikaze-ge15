@@ -12,6 +12,8 @@ public class GameOverPanel : MonoBehaviour
     public Button restartButton;
     public Button menuButton;
 
+    public MenuManager menuManager;
+
     private int _buttonSelectedIndex;
 
     private float _lastHorizontalInputTime;
@@ -24,11 +26,10 @@ public class GameOverPanel : MonoBehaviour
 
         scoreText.text = $"スコア：{_score}";
         killCountText.text = $"撃墜数：{_killCount}";
-        
+
         Debug.Log($"Display Score: {_score}");
         Debug.Log($"Display KillCount: {_killCount}");
 
-        restartButton.Select();
         _buttonSelectedIndex = 0;
 
         Vector3 scale = transform.localScale;
@@ -64,49 +65,53 @@ public class GameOverPanel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) ||
-            Input.GetButtonDown("Fire1") ||
-            Input.GetKeyDown(KeyCode.Space)
-           )
+        if (menuManager.gameState == GameState.GameEnd)
         {
+            if (Input.GetKeyDown(KeyCode.Return) ||
+                Input.GetButtonDown("Fire1") ||
+                Input.GetKeyDown(KeyCode.Space)
+               )
+            {
+                if (_buttonSelectedIndex == 0)
+                {
+                    restartButton.onClick.Invoke();
+                }
+                else
+                {
+                    menuButton.onClick.Invoke();
+                }
+            }
+
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            bool left = Input.GetKeyDown(KeyCode.LeftArrow);
+            bool right = Input.GetKeyDown(KeyCode.RightArrow);
+            float now = Time.unscaledTime;
+            bool canInput = (now - _lastHorizontalInputTime) > _horizontalInputCooldown;
+
+            if (Input.GetKeyDown(KeyCode.Tab) ||
+                (canInput && (right || horizontal > 0.5f)) ||
+                (canInput && (left || horizontal < -0.5f)))
+            {
+                if (right || horizontal > 0.5f || Input.GetKeyDown(KeyCode.Tab))
+                {
+                    _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;
+                }
+                else if (left || horizontal < -0.5f)
+                {
+                    _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;
+                }
+
+                _lastHorizontalInputTime = now;
+            }
+
             if (_buttonSelectedIndex == 0)
             {
-                restartButton.onClick.Invoke();
+                restartButton.Select();
             }
             else
             {
-                menuButton.onClick.Invoke();
+                menuButton.Select();
             }
-        }
-
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        bool left = Input.GetKeyDown(KeyCode.LeftArrow);
-        bool right = Input.GetKeyDown(KeyCode.RightArrow);
-        float now = Time.unscaledTime;
-        bool canInput = (now - _lastHorizontalInputTime) > _horizontalInputCooldown;
-
-        if (Input.GetKeyDown(KeyCode.Tab) ||
-            (canInput && (right || horizontal > 0.5f)) ||
-            (canInput && (left || horizontal < -0.5f)))
-        {
-            if (right || horizontal > 0.5f || Input.GetKeyDown(KeyCode.Tab))
-            {
-                _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;
-            }
-            else if (left || horizontal < -0.5f)
-            {
-                _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;
-            }
-            _lastHorizontalInputTime = now;
-        }
-        
-        if (_buttonSelectedIndex == 0)
-        {
-            restartButton.Select();
-        }
-        else
-        {
-            menuButton.Select();
         }
     }
 }

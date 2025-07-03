@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public enum GameState
@@ -92,8 +91,8 @@ public class MenuManager : MonoBehaviour
     
     public void EndGame()
     {
-        StartCoroutine(GameStateTransitionDelay(GameState.GameEnd, transitionTime));
         gameOverPanel.Display(score, killCount);
+        StartCoroutine(GameStateTransitionDelay(GameState.GameEnd, transitionTime));
     }
 
     public void RestartGame()
@@ -135,20 +134,20 @@ public class MenuManager : MonoBehaviour
     
     System.Collections.IEnumerator GameStateTransitionDelay(GameState state, float delay)
     {
-        yield return new WaitForSeconds(transitionTime + 0.1f);
+        yield return new WaitForSeconds(delay + 0.1f);
         gameState = state;
     }
     
     
     System.Collections.IEnumerator DelayBackToMenu(float delay)
     {
-        yield return new WaitForSeconds(transitionTime + 0.1f);
+        yield return new WaitForSeconds(delay + 0.1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(menuSceneName);
     }
     
     System.Collections.IEnumerator DelayRestart(float delay)
     {
-        yield return new WaitForSeconds(transitionTime + 0.1f);
+        yield return new WaitForSeconds(delay + 0.1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
