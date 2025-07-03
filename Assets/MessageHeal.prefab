@@ -121,11 +121,12 @@ MonoBehaviour:
   text: {fileID: 3671830380350877965}
   image: {fileID: 7371520154412233196}
   message: "HP \u56DE\u5FA9 25"
-  showDuration: 5
+  showDuration: 3
   sprite: {fileID: -6186231880139380768, guid: 64da3accb6bd3e54aafd52ce726b737c, type: 3}
   transitionInTime: 0.5
   transitionOffTime: 0.5
   height: 100
+  progressBar: {fileID: 8351347594431796814}
 --- !u!114 &8602724594928601069
 MonoBehaviour:
   m_ObjectHideFlags: 0

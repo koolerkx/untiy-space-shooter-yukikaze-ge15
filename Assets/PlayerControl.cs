@@ -22,10 +22,17 @@ public class PlayerControl : MonoBehaviour
     public AudioManager audioManager;
 
     int _currentLife;
+
+    private float _lastBulletTime = 0f;
+    public float bulletCooldown = 0.1f;
     
     [Header("Item")] 
     public int healAmount = 25;
     public float duration = 10.0f;
+    
+    public bool isRepeat = false;
+    public float isRepeatDuration = 10.0f;
+    private float _repeatCountDown;
 
     private void Start()
     {
@@ -54,9 +61,14 @@ public class PlayerControl : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, angle);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
+            float now = Time.time;
+            bool canShoot = (now - _lastBulletTime) >= _bulletCooldown;
+            bool spawnIsRepeat = isRepeat && (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")); 
+            bool spawnNotRepeat = Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1");
+            if ((spawnIsRepeat || spawnNotRepeat) && canShoot)
             {
                 SpawnBullet();
+                _lastBulletTime = now;
             }
         }
     }
@@ -88,6 +100,17 @@ public class PlayerControl : MonoBehaviour
                 throttleEffectSprite.transform.rotation = Quaternion.Euler(0, 0, effectAngle);
             }
         }
+
+        if (_repeatCountDown > 0)
+        {
+            _repeatCountDown -= Time.deltaTime;
+        }
+        else
+        {
+            isRepeat = false;
+        }
+        
+        Debug.Log($"isRepeat {isRepeat}");
     }
 
     void SpawnBullet()
@@ -119,6 +142,12 @@ public class PlayerControl : MonoBehaviour
         _menuManager.SetHpBar(Math.Min(_currentLife, maxLife) / (float)maxLife);
     }
 
+    public void SetRepeat(bool value)
+    {
+        isRepeat = value;
+        _repeatCountDown = isRepeatDuration;
+    }
+
     public void ApplyItem(ItemType type)
     {
         switch (type)
@@ -127,6 +156,7 @@ public class PlayerControl : MonoBehaviour
                 HealLife(healAmount);
                 break;
             case ItemType.Repeat:
+                SetRepeat(true);
                 break;
             case ItemType.Scale:
                 break;
