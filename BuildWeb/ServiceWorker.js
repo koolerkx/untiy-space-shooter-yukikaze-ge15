@@ -1,4 +1,4 @@
-const cacheName = "KOOLER FAN-雪風航路 _ Yukikaze Route by KOOLER FAN-1.0";
+const cacheName = "yukikaze-1.2";
 const contentToCache = [
     "Build/BuildWeb.loader.js",
     "Build/BuildWeb.framework.js",

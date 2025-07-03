@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -37,10 +38,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-        }
-        else
+        if (Application.platform != RuntimePlatform.WebGLPlayer)
         {
             Cursor.visible = false;
             InputSystem.DisableDevice(Mouse.current);
@@ -184,4 +182,11 @@ public class MenuManager : MonoBehaviour
         scaleTimerMask.fillAmount = percent;
     }
 
+    private void FixedUpdate()
+    {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            Input.GetJoystickNames();
+        }
+    }
 }

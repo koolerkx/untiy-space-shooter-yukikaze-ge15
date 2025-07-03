@@ -26,10 +26,7 @@ public class TitleMenu : MonoBehaviour
 
     private void Start()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-        }
-        else
+        if (Application.platform != RuntimePlatform.WebGLPlayer)
         {
             Cursor.visible = false;
             InputSystem.DisableDevice(Mouse.current);
@@ -148,6 +145,14 @@ public class TitleMenu : MonoBehaviour
         else
         {
             quitButton.Select();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            Input.GetJoystickNames();
         }
     }
 }

@@ -1,13 +1,13 @@
 {
-    "name": "é›ªé¢¨èˆªè·¯ Yukikaze Route by KOOLER FAN",
-    "short_name": "é›ªé¢¨èˆªè·¯ Yukikaze Route by KOOLER FAN",
+    "name": "á•—q˜H | Yukikaze Route by KOOLER FAN",
+    "short_name": "á•—q˜H | Yukikaze Route",
     "start_url": "index.html",
     "display": "fullscreen",
     "background_color": "#FFFFFF",
     "theme_color": "#000",
-    "description": "Yukikaze Route Game by Kooler Fan",
+    "description": "2D Top down space shooter game presents by Kooler Fan made with Unity",
     "icons": [{
-      "src": "TemplateData/icons/logo.png",
+      "src": "TemplateData/logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
