@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3767397386664227752}
   - component: {fileID: 100160251132706471}
   - component: {fileID: 5332461206583151021}
+  - component: {fileID: 8602724594928601069}
   m_Layer: 5
   m_Name: MessageHeal
   m_TagString: Untagged
@@ -124,6 +125,21 @@ MonoBehaviour:
   sprite: {fileID: -6186231880139380768, guid: 64da3accb6bd3e54aafd52ce726b737c, type: 3}
   transitionInTime: 0.5
   transitionOffTime: 0.5
+  height: 100
+--- !u!114 &8602724594928601069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491078808735050189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &4867651382243558853
 GameObject:
   m_ObjectHideFlags: 0
