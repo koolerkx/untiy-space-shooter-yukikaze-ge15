@@ -28,6 +28,8 @@ public class Enemy2Spawn : MonoBehaviour
                 Vector3 randomPosition =
                     center + new Vector3(Mathf.Cos(angleRad) * spawnRadius, Mathf.Sin(angleRad) * spawnRadius, 0);
                 Instantiate(enemyPrefabs[randomIndex], randomPosition, Quaternion.identity);
+
+                spawnInterval -= 0.001f;
             }
         }
 
