@@ -41,11 +41,15 @@ public class PlayerControl : MonoBehaviour
     public float isScaleDuration = 10.0f;
     private float _scaleCountDown;
 
+    private Camera _mainCamera;
+    private Collider2D _collider;
+
     private void Start()
     {
+        _collider = GetComponent<Collider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _menuManager = FindAnyObjectByType<MenuManager>();
-
+        _mainCamera = Camera.main;
         _currentLife = maxLife;
     }
 
@@ -106,6 +110,23 @@ public class PlayerControl : MonoBehaviour
 
                 throttleEffectSprite.transform.rotation = Quaternion.Euler(0, 0, effectAngle);
             }
+        }
+
+        if (_mainCamera)
+        {
+            float z = transform.position.z;
+            Vector3 min = _mainCamera.ViewportToWorldPoint(new Vector3(0, 0, _mainCamera.nearClipPlane));
+            Vector3 max = _mainCamera.ViewportToWorldPoint(new Vector3(1, 1, _mainCamera.nearClipPlane));
+            Vector3 pos = transform.position;
+            float width = 0.5f, height = 0.5f;
+            if (_collider)
+            {
+                width = _collider.bounds.extents.x;
+                height = _collider.bounds.extents.y;
+            }
+            pos.x = Mathf.Clamp(pos.x, min.x + width, max.x - width);
+            pos.y = Mathf.Clamp(pos.y, min.y + height, max.y - height);
+            transform.position = new Vector3(pos.x, pos.y, z);
         }
 
         if (_repeatCountDown > 0)

@@ -7,12 +7,12 @@ public class TitleMenu : MonoBehaviour
 {
     public GameObject titleLogo;
     public GameObject menuPanel;
-    
+
     public Button startButton;
     public Button quitButton;
-    
+
     public string gameScene = "GameScene";
-    
+
     private int _buttonSelectedIndex;
 
     private float _lastHorizontalInputTime;
@@ -26,12 +26,18 @@ public class TitleMenu : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
-        InputSystem.DisableDevice(Mouse.current); 
-        
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+        }
+        else
+        {
+            Cursor.visible = false;
+            InputSystem.DisableDevice(Mouse.current);
+        }
+
         StartSequence();
     }
-    
+
     private void StartSequence()
     {
         StopAllCoroutines();
@@ -47,6 +53,7 @@ public class TitleMenu : MonoBehaviour
         {
             StartCoroutine(FadeOutAudio(bgmAudioSource, transitionTime));
         }
+
         StartCoroutine(WaitAndLoadScene());
     }
 
@@ -54,7 +61,7 @@ public class TitleMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
     private System.Collections.IEnumerator SmoothScaleY(GameObject obj, float from, float to,
         float duration)
     {
@@ -72,13 +79,13 @@ public class TitleMenu : MonoBehaviour
         scale.y = to;
         obj.transform.localScale = scale;
     }
-    
+
     System.Collections.IEnumerator WaitAndLoadScene()
     {
         yield return new WaitForSeconds(transitionTime + 0.1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(gameScene);
     }
-    
+
     private System.Collections.IEnumerator FadeOutAudio(AudioSource audioSource, float duration)
     {
         float startVolume = audioSource.volume;
@@ -89,9 +96,10 @@ public class TitleMenu : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+
         audioSource.volume = 0f;
     }
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) ||
@@ -129,9 +137,10 @@ public class TitleMenu : MonoBehaviour
             {
                 _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;
             }
+
             _lastHorizontalInputTime = now;
         }
-        
+
         if (_buttonSelectedIndex == 0)
         {
             startButton.Select();

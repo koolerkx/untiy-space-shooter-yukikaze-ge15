@@ -37,9 +37,15 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
-        InputSystem.DisableDevice(Mouse.current);
-
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+        }
+        else
+        {
+            Cursor.visible = false;
+            InputSystem.DisableDevice(Mouse.current);
+        }
+        
         score = 0;
         if (scoreText)
         {

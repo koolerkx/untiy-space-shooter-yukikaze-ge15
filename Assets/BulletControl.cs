@@ -80,7 +80,7 @@ public class BulletControl : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.CompareTag("VisibleArea"))
         {
             Destroy(gameObject);
         }
