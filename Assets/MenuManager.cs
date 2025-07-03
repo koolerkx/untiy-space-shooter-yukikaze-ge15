@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
     public int score;
     public GameObject scorePanel;
     public Text scoreText;
-    
+
     public GameObject hpPanel;
     public GameObject hpBar;
     public float hpBarTransitionTime = 0.5f;
@@ -22,20 +22,24 @@ public class MenuManager : MonoBehaviour
 
     public StartMessage startMessage;
     public GameOverPanel gameOverPanel;
-    
+
     public GameState gameState = GameState.Transition;
-    
+
     public int killCount;
-    
+
     public string menuSceneName = "Menu";
-    
+
     public AudioManager audioManager;
+
+    public Image throughTimerMask;
+    public Image repeatTimerMask;
+    public Image scaleTimerMask;
 
     private void Start()
     {
         Cursor.visible = false;
-        InputSystem.DisableDevice(Mouse.current); 
-        
+        InputSystem.DisableDevice(Mouse.current);
+
         score = 0;
         if (scoreText)
         {
@@ -48,7 +52,7 @@ public class MenuManager : MonoBehaviour
 
         StartCoroutine(GameStateTransitionDelay(GameState.InGame, transitionTime));
     }
-    
+
     public void SetHpBar(float percent)
     {
         if (hpBar)
@@ -71,6 +75,7 @@ public class MenuManager : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+
         scale.x = to;
         bar.transform.localScale = scale;
     }
@@ -80,7 +85,7 @@ public class MenuManager : MonoBehaviour
         score += value;
         SetScore(score);
     }
-    
+
     public void SetScore(int value)
     {
         if (scoreText)
@@ -88,13 +93,13 @@ public class MenuManager : MonoBehaviour
             scoreText.text = $"{value}";
         }
     }
-    
+
     public void AddKill(int value = 1)
     {
         killCount += value;
     }
-    
-    
+
+
     public void EndGame()
     {
         gameOverPanel.Display(score, killCount);
@@ -106,16 +111,16 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(SmoothScaleY(scorePanel, 1f, 0f, transitionTime));
         StartCoroutine(SmoothScaleY(hpPanel, 1f, 0f, transitionTime));
         StartCoroutine(SmoothScaleY(gameOverPanel.gameObject, 1f, 0f, transitionTime));
-        
+
         StartCoroutine(DelayRestart(transitionTime));
     }
-    
+
     public void BackToMenu()
     {
         StartCoroutine(SmoothScaleY(scorePanel, 1f, 0f, transitionTime));
         StartCoroutine(SmoothScaleY(hpPanel, 1f, 0f, transitionTime));
         StartCoroutine(SmoothScaleY(gameOverPanel.gameObject, 1f, 0f, transitionTime));
-        
+
         StartCoroutine(DelayBackToMenu(transitionTime));
     }
 
@@ -136,24 +141,41 @@ public class MenuManager : MonoBehaviour
         scale.y = to;
         obj.transform.localScale = scale;
     }
-    
-    
+
+
     System.Collections.IEnumerator GameStateTransitionDelay(GameState state, float delay)
     {
         yield return new WaitForSeconds(delay + 0.1f);
         gameState = state;
     }
-    
-    
+
+
     System.Collections.IEnumerator DelayBackToMenu(float delay)
     {
         yield return new WaitForSeconds(delay + 0.1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(menuSceneName);
     }
-    
+
     System.Collections.IEnumerator DelayRestart(float delay)
     {
         yield return new WaitForSeconds(delay + 0.1f);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
+            .name);
     }
+
+    public void SetThroughTimerMask(float percent)
+    {
+        throughTimerMask.fillAmount = percent;
+    }
+    
+    public void SetRepeatTimerMask(float percent)
+    {
+        repeatTimerMask.fillAmount = percent;
+    }
+    
+    public void SetScaleTimerMask(float percent)
+    {
+        scaleTimerMask.fillAmount = percent;
+    }
+
 }

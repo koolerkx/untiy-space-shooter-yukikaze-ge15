@@ -116,6 +116,7 @@ public class PlayerControl : MonoBehaviour
         {
             isRepeat = false;
         }
+        _menuManager.SetRepeatTimerMask(1 - (_repeatCountDown / isRepeatDuration));
 
         if (_throughCountDown > 0)
         {
@@ -125,6 +126,7 @@ public class PlayerControl : MonoBehaviour
         {
             isThrough = false;
         }
+        _menuManager.SetThroughTimerMask(1 - (_throughCountDown / isThroughDuration));
         
         if (_scaleCountDown > 0)
         {
@@ -134,6 +136,7 @@ public class PlayerControl : MonoBehaviour
         {
             isScale = false;
         }
+        _menuManager.SetScaleTimerMask(1 - (_scaleCountDown / isScaleDuration));
     }
 
     void SpawnBullet()
