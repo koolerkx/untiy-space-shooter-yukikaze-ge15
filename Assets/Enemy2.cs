@@ -23,6 +23,8 @@ public class Enemy2 : MonoBehaviour
 
     private float _shootRateTimer;
 
+    public AudioManager audioManager;
+
     private void Start()
     {
         _player = GameObject.Find("Player");
@@ -30,6 +32,7 @@ public class Enemy2 : MonoBehaviour
         _bulletTimer = 0f;
         _bulletsFired = 0;
         _shootRateTimer = 0f;
+        audioManager = FindAnyObjectByType<AudioManager>();
     }
 
     void FixedUpdate()
@@ -79,6 +82,7 @@ public class Enemy2 : MonoBehaviour
         var player = other.GetComponent<PlayerControl>();
         if (player)
         {
+            audioManager.kill.Play();
             player.LoseLife(damage);
             Destroy(gameObject);
         }

@@ -11,16 +11,20 @@ public class BulletControl : MonoBehaviour
     public float initialSpeed = 10f;
     public float acceleration = 10f;
 
+    public AudioManager audioManager;
+
     void Start()
     {
         _destroyCount = 0;
-        
+
         _menuManager = FindAnyObjectByType<MenuManager>();
         _rb = GetComponent<Rigidbody2D>();
         if (_rb)
         {
             _rb.AddForce(transform.up * initialSpeed, ForceMode2D.Impulse);
         }
+
+        audioManager = FindAnyObjectByType<AudioManager>();
     }
 
     void Update()
@@ -35,6 +39,8 @@ public class BulletControl : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            // audioManager.onTarget.Play();
+            audioManager.kill.Play();
             var enemyComponent = other.GetComponent<Enemy2>();
             if (enemyComponent != null)
             {
@@ -56,13 +62,14 @@ public class BulletControl : MonoBehaviour
 
         if (other.CompareTag("EnemyBullet"))
         {
+            audioManager.onTarget.Play();
             var enemyBullet = other.GetComponent<EnemyBullet>();
 
             if (_menuManager != null)
             {
                 _menuManager.AddScore(enemyBullet.destroyScore);
             }
-            
+
             _destroyCount++;
             if (_destroyCount >= maxDestroy)
             {

@@ -27,6 +27,8 @@ public class MenuManager : MonoBehaviour
     public int killCount;
     
     public string menuSceneName = "Menu";
+    
+    public AudioManager audioManager;
 
     private void Start()
     {

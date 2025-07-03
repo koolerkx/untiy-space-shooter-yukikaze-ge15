@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TitleMenu : MonoBehaviour
@@ -19,11 +20,12 @@ public class TitleMenu : MonoBehaviour
 
     public float transitionTime = 0.5f;
 
-    private AudioSource _audioSource;
+    public AudioSource bgmAudioSource;
+    public AudioSource menuClickAudioSource;
+    public AudioSource buttonSelectAudioSource;
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
         StartSequence();
     }
     
@@ -38,9 +40,9 @@ public class TitleMenu : MonoBehaviour
     {
         StartCoroutine(SmoothScaleY(titleLogo, 1f, 0f, transitionTime));
         StartCoroutine(SmoothScaleY(menuPanel, 1f, 0f, transitionTime));
-        if (_audioSource != null)
+        if (bgmAudioSource != null)
         {
-            StartCoroutine(FadeOutAudio(_audioSource, transitionTime));
+            StartCoroutine(FadeOutAudio(bgmAudioSource, transitionTime));
         }
         StartCoroutine(WaitAndLoadScene());
     }
@@ -94,6 +96,7 @@ public class TitleMenu : MonoBehaviour
             Input.GetKeyDown(KeyCode.Space)
            )
         {
+            menuClickAudioSource.Play();
             if (_buttonSelectedIndex == 0)
             {
                 startButton.onClick.Invoke();
@@ -114,6 +117,7 @@ public class TitleMenu : MonoBehaviour
             (canInput && (right || horizontal > 0.5f)) ||
             (canInput && (left || horizontal < -0.5f)))
         {
+            buttonSelectAudioSource.Play();
             if (right || horizontal > 0.5f || Input.GetKeyDown(KeyCode.Tab))
             {
                 _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;

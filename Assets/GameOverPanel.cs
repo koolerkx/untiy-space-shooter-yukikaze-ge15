@@ -18,9 +18,12 @@ public class GameOverPanel : MonoBehaviour
 
     private float _lastHorizontalInputTime;
     private readonly float _horizontalInputCooldown = 0.3f;
+    
+    public AudioManager audioManager;
 
     public void Display(int score, int killCount)
     {
+        audioManager.gameOver.Play();
         _score = score;
         _killCount = killCount;
 
@@ -72,6 +75,7 @@ public class GameOverPanel : MonoBehaviour
                 Input.GetKeyDown(KeyCode.Space)
                )
             {
+                audioManager.menuClick.Play();
                 if (_buttonSelectedIndex == 0)
                 {
                     restartButton.onClick.Invoke();
@@ -92,6 +96,7 @@ public class GameOverPanel : MonoBehaviour
                 (canInput && (right || horizontal > 0.5f)) ||
                 (canInput && (left || horizontal < -0.5f)))
             {
+                audioManager.menuSelect.Play();
                 if (right || horizontal > 0.5f || Input.GetKeyDown(KeyCode.Tab))
                 {
                     _buttonSelectedIndex = (_buttonSelectedIndex + 1) % 2;

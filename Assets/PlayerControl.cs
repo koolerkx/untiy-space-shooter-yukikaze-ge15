@@ -18,6 +18,8 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
 
     public GameObject throttleEffectSprite;
+    
+    public AudioManager audioManager;
 
     int _currentLife;
 
@@ -93,6 +95,7 @@ public class PlayerControl : MonoBehaviour
 
     public void LoseLife(int damage = 1)
     {
+        audioManager.damage.Play();
         _currentLife -= damage;
         if (_currentLife > 0)
         {
