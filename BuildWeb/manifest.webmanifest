@@ -1,0 +1,15 @@
+{
+    "name": "雪風航路 Yukikaze Route by KOOLER FAN",
+    "short_name": "雪風航路 Yukikaze Route by KOOLER FAN",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#FFFFFF",
+    "theme_color": "#000",
+    "description": "Yukikaze Route Game by Kooler Fan",
+    "icons": [{
+      "src": "TemplateData/icons/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }]
+  }
