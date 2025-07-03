@@ -19,8 +19,11 @@ public class TitleMenu : MonoBehaviour
 
     public float transitionTime = 0.5f;
 
+    private AudioSource _audioSource;
+
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         StartSequence();
     }
     
@@ -35,7 +38,10 @@ public class TitleMenu : MonoBehaviour
     {
         StartCoroutine(SmoothScaleY(titleLogo, 1f, 0f, transitionTime));
         StartCoroutine(SmoothScaleY(menuPanel, 1f, 0f, transitionTime));
-        
+        if (_audioSource != null)
+        {
+            StartCoroutine(FadeOutAudio(_audioSource, transitionTime));
+        }
         StartCoroutine(WaitAndLoadScene());
     }
 
@@ -68,6 +74,18 @@ public class TitleMenu : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(gameScene);
     }
     
+    private System.Collections.IEnumerator FadeOutAudio(AudioSource audioSource, float duration)
+    {
+        float startVolume = audioSource.volume;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        audioSource.volume = 0f;
+    }
     
     private void Update()
     {
