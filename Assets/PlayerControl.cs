@@ -25,14 +25,21 @@ public class PlayerControl : MonoBehaviour
 
     private float _lastBulletTime = 0f;
     public float bulletCooldown = 0.1f;
-    
-    [Header("Item")] 
-    public int healAmount = 25;
+
+    [Header("Item")] public int healAmount = 25;
     public float duration = 10.0f;
-    
+
     public bool isRepeat = false;
     public float isRepeatDuration = 10.0f;
     private float _repeatCountDown;
+
+    public bool isThrough = false;
+    public float isThroughDuration = 10.0f;
+    private float _throughCountDown;
+    
+    public bool isScale = false;
+    public float isScaleDuration = 10.0f;
+    private float _scaleCountDown;
 
     private void Start()
     {
@@ -62,8 +69,8 @@ public class PlayerControl : MonoBehaviour
             }
 
             float now = Time.time;
-            bool canShoot = (now - _lastBulletTime) >= _bulletCooldown;
-            bool spawnIsRepeat = isRepeat && (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")); 
+            bool canShoot = (now - _lastBulletTime) >= bulletCooldown;
+            bool spawnIsRepeat = isRepeat && (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"));
             bool spawnNotRepeat = Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1");
             if ((spawnIsRepeat || spawnNotRepeat) && canShoot)
             {
@@ -109,15 +116,43 @@ public class PlayerControl : MonoBehaviour
         {
             isRepeat = false;
         }
+
+        if (_throughCountDown > 0)
+        {
+            _throughCountDown -= Time.deltaTime;
+        }
+        else
+        {
+            isThrough = false;
+        }
         
-        Debug.Log($"isRepeat {isRepeat}");
+        if (_scaleCountDown > 0)
+        {
+            _scaleCountDown -= Time.deltaTime;
+        }
+        else
+        {
+            isScale = false;
+        }
     }
 
     void SpawnBullet()
     {
         if (!bulletPrefab) return;
         Vector3 spawnPos = transform.position + transform.up.normalized * bulletSpawnOffset;
-        Instantiate(bulletPrefab, spawnPos, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, spawnPos, transform.rotation);
+        var bulletControl = bullet.GetComponent<BulletControl>();
+        if (bulletControl)
+        {
+            if(isScale)
+            {
+                bullet.transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
+            }
+            if(isThrough)
+            {
+                bulletControl.maxDestroy = 99;
+            }
+        }
     }
 
     public void LoseLife(int damage = 1)
@@ -147,6 +182,18 @@ public class PlayerControl : MonoBehaviour
         isRepeat = value;
         _repeatCountDown = isRepeatDuration;
     }
+    
+    public void SetThrough(bool value)
+    {
+        isThrough = value;
+        _throughCountDown = isThroughDuration;
+    }
+    
+    public void SetScale(bool value)
+    {
+        isScale = value;
+        _scaleCountDown = isScaleDuration;
+    }
 
     public void ApplyItem(ItemType type)
     {
@@ -159,8 +206,10 @@ public class PlayerControl : MonoBehaviour
                 SetRepeat(true);
                 break;
             case ItemType.Scale:
+                SetScale(true);
                 break;
             case ItemType.Through:
+                SetThrough(true);
                 break;
             case ItemType.None:
                 break;

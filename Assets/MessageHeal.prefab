@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 352, y: 100}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &715200822271460906
 CanvasRenderer:
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 10
     m_Right: 10
-    m_Top: 10
+    m_Top: 0
     m_Bottom: 10
   m_ChildAlignment: 6
   m_Spacing: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   sprite: {fileID: -6186231880139380768, guid: 64da3accb6bd3e54aafd52ce726b737c, type: 3}
   transitionInTime: 0.5
   transitionOffTime: 0.5
-  height: 100
+  height: 75
   progressBar: {fileID: 8351347594431796814}
 --- !u!114 &8602724594928601069
 MonoBehaviour:
@@ -176,7 +176,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 50}
+  m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9104795463584101919
 CanvasRenderer:
@@ -208,7 +208,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: befb119db2c67224da0dc9d082c8462c, type: 3}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -258,7 +258,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 332, y: 73.2}
+  m_SizeDelta: {x: 210, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2620476201532046547
 CanvasRenderer:
@@ -359,7 +359,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 332, y: 10}
+  m_SizeDelta: {x: 271, y: 5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3595588843046871188
 CanvasRenderer:
@@ -434,7 +434,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8502380165409883252
 CanvasRenderer:
