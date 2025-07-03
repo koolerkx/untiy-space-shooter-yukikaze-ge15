@@ -1,11 +1,11 @@
 {
-    "name": "�ᕗ�q�H | Yukikaze Route by KOOLER FAN",
-    "short_name": "�ᕗ�q�H | Yukikaze Route",
+    "name": "雪風航路 | Yukikaze Route by KOOLER FAN",
+    "short_name": "雪風航路 | Yukikaze Route",
     "start_url": "index.html",
     "display": "fullscreen",
     "background_color": "#FFFFFF",
     "theme_color": "#000",
-    "description": "2D Top down space shooter game presents by Kooler Fan made with Unity",
+    "description": "2Dトップダウン型スペースシューティングゲーム presents by Kooler Fan",
     "icons": [{
       "src": "TemplateData/logo.png",
       "sizes": "512x512",

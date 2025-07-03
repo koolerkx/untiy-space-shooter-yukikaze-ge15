@@ -1,4 +1,4 @@
-const cacheName = "yukikaze-1.2";
+const cacheName = "yukikaze-1.22";
 const contentToCache = [
     "Build/BuildWeb.loader.js",
     "Build/BuildWeb.framework.js",

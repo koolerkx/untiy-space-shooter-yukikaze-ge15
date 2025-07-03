@@ -24,12 +24,21 @@ public class TitleMenu : MonoBehaviour
     public AudioSource menuClickAudioSource;
     public AudioSource buttonSelectAudioSource;
 
+    public GameObject[] disableOnWebGL;
+
     private void Start()
     {
         if (Application.platform != RuntimePlatform.WebGLPlayer)
         {
             Cursor.visible = false;
             InputSystem.DisableDevice(Mouse.current);
+        }
+        else
+        {
+            foreach (GameObject obj in disableOnWebGL)
+            {
+                if (obj) obj.SetActive(false);
+            }
         }
 
         StartSequence();

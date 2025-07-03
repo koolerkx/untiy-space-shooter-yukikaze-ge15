@@ -1238,7 +1238,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: v1.2
+  m_Text: v1.22
 --- !u!222 &660568647
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3660,6 +3660,8 @@ MonoBehaviour:
   bgmAudioSource: {fileID: 2097768212}
   menuClickAudioSource: {fileID: 2097768214}
   buttonSelectAudioSource: {fileID: 2097768215}
+  disableOnWebGL:
+  - {fileID: 1589597470}
 --- !u!82 &2097768212
 AudioSource:
   m_ObjectHideFlags: 0
