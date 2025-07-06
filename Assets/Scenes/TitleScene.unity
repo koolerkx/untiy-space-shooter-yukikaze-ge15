@@ -1238,7 +1238,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: v1.22
+  m_Text: v1.23
 --- !u!222 &660568647
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2878,7 +2878,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 248958159076754368, guid: f8399ea9f9bd6174eabd7982a33a985e, type: 3}
       propertyPath: m_Text
-      value: "\u30A2\u30A4\u30EC\u30E0\u7D39\u4ECB\n"
+      value: "\u30A2\u30A4\u30C6\u30E0\u7D39\u4ECB"
       objectReference: {fileID: 0}
     - target: {fileID: 248958159076754368, guid: f8399ea9f9bd6174eabd7982a33a985e, type: 3}
       propertyPath: m_FontData.m_Alignment
