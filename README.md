@@ -1,43 +1,47 @@
-Shooting Game Unity
+雪風航路 - Unity シューティングゲーム
 
-Homework of course GE15
+Unity授業の課題です
 
-[Demo](https://yukikaze.koolerkx.com/)
+[試遊版](https://yukikaze.koolerkx.com/)
 
-## Game Control
+<img src="/docImage/forWeb/OG.png" width="800px"/>
 
-�Q�[���R���g���[�^�[���A�L�[�{�[�h�ő���ł��܂�
+2Dトップダウン型スペースシューティングゲーム
 
-�ړ��F���X�e�B�b�N / W A S D
+## 操作方法
 
-�e�𔭎ˁFA�{�^�� / Space
+ゲームコントローターか、キーボードで操作できます
 
-## Introduction
+自機の移動：左スティック / W A S D
 
-### Player Control
+弾丸の発射：Aボタン / Space
 
-�v���C���[�͂P�O�OHP������܂��B�O�ɂȂ�����A�Q�[���I�[�o�[�ɂȂ�܂��B
+## ゲーム紹介
 
-### Enemy Type
+### 自機
 
-�G�@�͎l��ނ���܂�
+プレイヤーは１００HPがあります。０になったら、ゲームオーバーになります。
 
-1. �ʏ�^�F���ʂŁA���Đ�����΁A�P�O�O�O�X�R�A���炦�܂��B
+### 敵機
 
-2. �����^�F�e��ł��Ȃ��ł����A�X�s�[�h�������v���C���[�ɔ���܂��B���Đ�����΁A�P�R�O�O�X�R�A���炦�܂��B
+敵機は四種類あります
 
-3. ���e�^�F�łe���������A�p���������ł��B���Đ�����΁A�P�W�O�O�X�R�A���炦�܂��B
+1. 通常型：普通で、撃墜数すれば、１０００スコアもらえます。
 
-4. �A�ˌ^�F�e��łp�x���Ⴂ�ł����A��C��R�̒e��ł��܂��B���Đ�����΁A�Q�O�O�O�X�R�A���炦�܂��B
+2. 快速型：弾を打たないですが、スピードが速くプレイヤーに迫ります。撃墜数すれば、１３００スコアもらえます。
 
-### Item Type
+3. 速弾型：打つ弾が速いし、頻率も高いです。撃墜数すれば、１８００スコアもらえます。
 
-�A�C�e���͎l��ނ���܂�
+4. 連射型：弾を打つ頻度が低いですが、一気沢山の弾を打ちます。撃墜数すれば、２０００スコアもらえます。
 
-1. �񕜃A�C�e���F�Q�THP��
+### アイテム
 
-2. �ђʃA�C�e���F�P�O�b�ԑłe���G���ђʂł��܂��B
+アイテムは四種類あります、アイテムを貰えば、バフを得ることができます
 
-3. �e�Q�{�T�C�Y�A�C�e���F�P�O�b�Ԓe�̃T�C�Y���{�ɂ��܂��B
+1. 回復アイテム：２５HP回復
 
-4. �A�˃A�C�����F�P�O�b�Ԕ��˃{�^�������������āA�e��A�˂ł��܂��B
+2. 貫通アイテム：１０秒間打つ弾が敵を貫通できます。
+
+3. 弾２倍サイズアイテム：１０秒間弾のサイズを二倍にします。
+
+4. 連射アイレム：１０秒間発射ボタンを押し続けて、弾を連射できます。
